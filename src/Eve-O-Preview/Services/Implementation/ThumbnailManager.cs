@@ -34,8 +34,9 @@ namespace EveOPreview.Services
 		private readonly DispatcherTimer _thumbnailUpdateTimer;
 		private readonly IThumbnailViewFactory _thumbnailViewFactory;
 		private readonly Dictionary<IntPtr, IThumbnailView> _thumbnailViews;
+		private readonly HashSet<string> _cycleGroup1IgnoreClients;
 
-		private (IntPtr Handle, string Title) _activeClient;
+        private (IntPtr Handle, string Title) _activeClient;
 		private IntPtr _externalApplication;
 
 		private readonly object _locationChangeNotificationSyncRoot;
@@ -81,7 +82,9 @@ namespace EveOPreview.Services
 
 			RegisterCycleClientUsingOrderHotkey(this._configuration.CycleGroup2ForwardHotkeys?.Select(x => this._configuration.StringToKey(x)), true, this._configuration.CycleGroup2ClientsOrder);
             RegisterCycleClientUsingOrderHotkey(this._configuration.CycleGroup2BackwardHotkeys?.Select(x => this._configuration.StringToKey(x)), false, this._configuration.CycleGroup2ClientsOrder);
-		}
+
+			this._cycleGroup1IgnoreClients = this._configuration.CycleGroup1IgnoreClients.ToHashSet();
+        }
 
 		public IThumbnailView GetClientByTitle(string title)
 		{
@@ -168,7 +171,7 @@ namespace EveOPreview.Services
                 clientOrder = clientOrder.Reverse();
             }
 
-            var orderedItems = clientOrder.ToList();
+			var orderedItems = clientOrder.Where(kvp => !this._cycleGroup1IgnoreClients.Contains(kvp.Value.Title)).ToList();
 
             int currentIndex = orderedItems.FindIndex(kvp => kvp.Key == this._activeClient.Handle);
 

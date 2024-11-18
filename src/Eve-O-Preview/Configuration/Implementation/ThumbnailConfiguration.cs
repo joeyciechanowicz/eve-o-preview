@@ -19,8 +19,9 @@ namespace EveOPreview.Configuration.Implementation
 
 			this.CycleGroup1ForwardHotkeys = new List<string> { "F14", "F4" };
 			this.CycleGroup1BackwardHotkeys = new List<string> { "F13", "Shift+F4" };
+            this.CycleGroup1IgnoreClients = new List<string> { "EVE - Example Logi Toon 1", "EVE - Example Scout Toon 2" };
 
-			this.CycleGroup2ForwardHotkeys = new List<string> { "F16", "Control+F16" };
+            this.CycleGroup2ForwardHotkeys = new List<string> { "F16", "Control+F16" };
 			this.CycleGroup2BackwardHotkeys = new List<string> { "F15", "Control+F15" };
 			this.CycleGroup2ClientsOrder = new Dictionary<string, int>
 			{
@@ -88,8 +89,8 @@ namespace EveOPreview.Configuration.Implementation
 		[JsonProperty("CycleGroup1BackwardHotkeys")]
 		public List<string> CycleGroup1BackwardHotkeys { get; set; }
 
-		[JsonProperty("CycleGroup1ClientsOrder")]
-		public Dictionary<string, int> CycleGroup1ClientsOrder { get; set; }
+        [JsonProperty("CycleGroup1IgnoreClients")]
+        public List<string> CycleGroup1IgnoreClients { get; set; }
 
 		[JsonProperty("CycleGroup2ForwardHotkeys")]
 		public List<string> CycleGroup2ForwardHotkeys { get; set; }
