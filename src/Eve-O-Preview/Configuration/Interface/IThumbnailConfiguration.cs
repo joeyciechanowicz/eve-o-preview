@@ -14,7 +14,11 @@ namespace EveOPreview.Configuration
 		List<string> CycleGroup2BackwardHotkeys { get; set; }
 		Dictionary<string, int> CycleGroup2ClientsOrder { get; set; }
 
-		Dictionary<string, Color> PerClientActiveClientHighlightColor { get; set; }
+        List<string> CycleGroup3ForwardHotkeys { get; set; }
+        List<string> CycleGroup3BackwardHotkeys { get; set; }
+        Dictionary<string, int> CycleGroup3ClientsOrder { get; set; }
+
+        Dictionary<string, Color> PerClientActiveClientHighlightColor { get; set; }
 
 		bool MinimizeToTray { get; set; }
 		int ThumbnailRefreshPeriod { get; set; }

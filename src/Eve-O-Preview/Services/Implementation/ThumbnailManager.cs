@@ -83,7 +83,10 @@ namespace EveOPreview.Services
 			RegisterCycleClientUsingOrderHotkey(this._configuration.CycleGroup2ForwardHotkeys?.Select(x => this._configuration.StringToKey(x)), true, this._configuration.CycleGroup2ClientsOrder);
             RegisterCycleClientUsingOrderHotkey(this._configuration.CycleGroup2BackwardHotkeys?.Select(x => this._configuration.StringToKey(x)), false, this._configuration.CycleGroup2ClientsOrder);
 
-			this._cycleGroup1IgnoreClients = this._configuration.CycleGroup1IgnoreClients.ToHashSet();
+            RegisterCycleClientUsingOrderHotkey(this._configuration.CycleGroup3ForwardHotkeys?.Select(x => this._configuration.StringToKey(x)), true, this._configuration.CycleGroup3ClientsOrder);
+            RegisterCycleClientUsingOrderHotkey(this._configuration.CycleGroup3BackwardHotkeys?.Select(x => this._configuration.StringToKey(x)), false, this._configuration.CycleGroup3ClientsOrder);
+
+            this._cycleGroup1IgnoreClients = this._configuration.CycleGroup1IgnoreClients.ToHashSet();
         }
 
 		public IThumbnailView GetClientByTitle(string title)
